@@ -81,22 +81,40 @@ const pAequorFactory = (specimenNum, dna) => {
   }
 }
 
+// creates flexible number of instances, which will likely survive, and returns them as a array
+const createMultipleSpecimens = numOfInstances =>{
+  let arrayOfSpecimens = [];
+  let newSpecimen = {}
+
+  for (let i = 0; i < numOfInstances; i++) {
+    newSpecimen = pAequorFactory(i+1,mockUpStrand());
+    while(!newSpecimen.willLikelySurvive()){
+      newSpecimen = pAequorFactory(i+1,mockUpStrand());
+    }
+    arrayOfSpecimens[i] = newSpecimen;
+  }
+
+  return arrayOfSpecimens;
+}
+
 
 
 
 
 // Test-Code
 
-//let testSpecimen1 = pAequorFactory(2,mockUpStrand());
-//let testSpecimen2 = pAequorFactory(1,mockUpStrand());
+/* let testSpecimen1 = pAequorFactory(2,mockUpStrand());
+let testSpecimen2 = pAequorFactory(1,mockUpStrand());
 let testSpecimen1 = pAequorFactory(1,['C','G','C']);
 let testSpecimen2 = pAequorFactory(2,['A','A','A']);
 
 console.log(testSpecimen1);
 console.log(testSpecimen2);
-//console.log(testSpecimen1.mutate());
-//testSpecimen1.compareDNA(testSpecimen2);
-console.log(testSpecimen1.willLikelySurvive());
+console.log(testSpecimen1.mutate());
+testSpecimen1.compareDNA(testSpecimen2);
+console.log(testSpecimen1.willLikelySurvive());*/
+let multipleSpecimens = createMultipleSpecimens(20);
+console.log(multipleSpecimens); 
 
 
 
