@@ -76,6 +76,32 @@ const pAequorFactory = (specimenNum, dna) => {
       
       let willSurvive = ((100*countC/this.dna.length) >= 60 || (100*countG/this.dna.length) >= 60) ? true : false;
       return willSurvive;
+    },
+
+    complementaryStrand(){
+
+      let compStrand = [];
+
+      for (let strandIndex = 0; strandIndex < this.dna.length; strandIndex++) {
+        switch(this.dna[strandIndex]){
+          case 'A': 
+            compStrand.push('T');
+            break;
+          case 'T':
+            compStrand.push('A');
+            break;
+          case 'C':
+            compStrand.push('G');
+            break;
+          case 'G':
+            compStrand.push('C');
+            break;
+          default:
+            compStrand.push(this.dna[strandIndex])
+        }
+      }
+
+      return compStrand;
     }
 
   }
@@ -103,18 +129,28 @@ const createMultipleSpecimens = numOfInstances =>{
 
 // Test-Code
 
-/* let testSpecimen1 = pAequorFactory(2,mockUpStrand());
-let testSpecimen2 = pAequorFactory(1,mockUpStrand());
-let testSpecimen1 = pAequorFactory(1,['C','G','C']);
-let testSpecimen2 = pAequorFactory(2,['A','A','A']);
-
+// Test Specimens
+let testSpecimen1 = pAequorFactory(1,mockUpStrand());
+let testSpecimen2 = pAequorFactory(2,mockUpStrand());
 console.log(testSpecimen1);
 console.log(testSpecimen2);
-console.log(testSpecimen1.mutate());
-testSpecimen1.compareDNA(testSpecimen2);
-console.log(testSpecimen1.willLikelySurvive());*/
-let multipleSpecimens = createMultipleSpecimens(20);
-console.log(multipleSpecimens); 
+
+// Test mutate()
+/* console.log(testSpecimen1.mutate()); */
+
+// Test compareDNA
+/* testSpecimen1.compareDNA(testSpecimen2); */
+
+// Test willLiklelySurvive
+/* console.log(testSpecimen1.willLikelySurvive()); */
+
+// Test createMultipleSpecimens
+/* let multipleSpecimens = createMultipleSpecimens(20);
+console.log(multipleSpecimens); */ 
+
+// Test complementaryStrand
+console.log(testSpecimen1);
+console.log(testSpecimen1.complementaryStrand());
 
 
 
